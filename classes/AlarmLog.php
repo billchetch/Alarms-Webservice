@@ -13,6 +13,7 @@ class AlarmLog extends \chetch\db\DBObject{
 		
 		self::setConfig('SELECT_DEFAULT_FILTER', "created<':to' AND created>=':from'");
 		self::setConfig('SELECT_DEFAULT_SORT', "id DESC");
+		self::setConfig('SELECT_DEFAULT_LIMIT', 100);
 	}
 	
 	public function __construct($rowdata){

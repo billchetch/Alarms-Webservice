@@ -18,8 +18,8 @@ class AlarmsAPIHandleRequest extends chetch\api\APIHandleRequest{
 			
 
 			case 'log':
-				if(!isset($params['from']))throw new Exception("No from date passed in query");
-				if(!isset($params['to']))throw new Exception("No to date passed in query");
+				if(!isset($params['from']))$params['from'] = '0000-00-00';
+				if(!isset($params['to']))$params['to'] = '9999-01-01';
 				
 				$results = AlarmLog::createCollection($params);
 				$data = AlarmLog::collection2rows($results);
