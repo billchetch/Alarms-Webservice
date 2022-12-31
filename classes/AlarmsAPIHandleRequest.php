@@ -20,8 +20,12 @@ class AlarmsAPIHandleRequest extends chetch\api\APIHandleRequest{
 			case 'log':
 				if(!isset($params['from']))$params['from'] = '0000-00-00';
 				if(!isset($params['to']))$params['to'] = '9999-01-01';
-				
-				$results = AlarmLog::createCollection($params);
+				$filter = null;
+				$sort = null;
+				$limit = null;
+
+				if(isset($params['alarm_id']))$filter = "a.alarm_id='".$params['alarm_id']."'";
+				$results = AlarmLog::createCollection($params, $filter, $sort, $limit);
 				$data = AlarmLog::collection2rows($results);
 				break;
 			default:
